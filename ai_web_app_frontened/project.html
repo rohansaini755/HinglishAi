@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Bot</title>
+        <link rel = "stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <script type="text/javascript" srrc="https://code.responsivevoice.org/responsivevoice.js"></script>
+        <section class="header" style="background-image:linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/chatbots.jpg);">
+            <nav>
+                <img src="images/discord-bot-icon-2.png" alt = "logo">
+                <div class="nav-links" id="navLinks">
+                    <i class ="fa fa-times" onclick="hideMenu()"></i>
+                    <span id="message"></span>
+                    <ul>
+                        <li><a href="">HOME</a></li>
+                        <li><a href="">ABOUT</a></li>
+                        <li><a href="">COURSE</a></li>
+                        <li><a href="textList.html">TEXTSET</a></li>
+                        <li><a href="">CONTACT</a></li>
+                        <li><a href="signup.html">SIGNIN</a></li>
+                    </ul>
+                </div>
+                <i class="fa fa-bars" onclick="showMenu()"></i>
+            </nav>
+
+        <div class="text-box">
+            <h1>World's First Talkative Bot</h1>
+            <p>To solve the problem of speaking english, here is your friend. You just need 
+                to give your time and rest work is our.
+            </p>
+            <button class="getstarted-btn" id="getstarted">Get Started</button><br><br>
+            <!--<a href = "bot2.html" class ="start-btn">Get Started</a><br><br><br>-->
+            <a href = "" class="visit-btn">Visit Us To Know More</a>
+            
+        </div>
+        </section>
+
+<!----Offer----->
+
+<section class ="offer">
+    <h1>Facilities We Offer</h1>
+    <p>Talk To Bot</p>
+
+    <div class="row">
+        <div class="offer-col">
+            <h3>F1</h3>
+            <p>hgcdchg hggc vas jha ha ugaj aKUD Ay cva cga gfuuANAB CAJ</p>
+        </div>
+        <div class="offer-col">
+            <h3>F2</h3>
+            <p>hgcdchg hggc vas jha ha ugaj aKUD Ay cva cga gfuuANAB CAJ</p>
+        </div>
+        <div class="offer-col">
+            <h3>F3</h3>
+            <p>hgcdchg hggc vas jha ha ugaj aKUD Ay cva cga gfuuANAB CAJ</p>
+        </div>
+    </div>
+</section>
+
+
+
+<!------------JavaScript for Toggle Menu----------->
+    <script>
+        document.cookie = "username=";
+        const userName = document.cookie.split(";")[0].split("=")[1];
+        var navlinks = document.getElementById("navLinks")
+
+            document.querySelector("#getstarted").onclick = () => {
+            window.location.href = "bot2.html";
+        };
+        function hexToString(hexRepresentation) {
+            let byteArray = new Uint8Array(hexRepresentation.match(/[\da-f]{2}/gi).map(function (h) {
+              return parseInt(h, 16)
+            }))
+            return new TextDecoder().decode(byteArray)
+        }
+
+        function showMenu(){
+            navLinks.style.right = "0";
+        }
+        function hideMenu(){
+            navLinks.style.right = "-200px";
+        }
+    </script>
+
+<!-----------------javascript for text to speek----------->
+    
+    </body>
+</html>

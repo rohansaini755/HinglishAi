@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Sign In and Sign Up Form</title>
+        <link rel="stylesheet" href="css/signup.css">
+        <script src="https://kit.fontawesome.com/416d1e0c7b.js" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="form-box">
+                <h1 id="title">Sign Up</h1>
+                <form class ="form" name="form1" id="formElem">
+                    <div class ="input-group">
+                        <div class="input-field" id="firstNameField">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" placeholder="First name" id="fname">
+
+                        </div>
+
+                        <div class="input-field" id="lastNameField">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" placeholder="Last name" id="lname">
+
+                        </div>
+
+                        <div class="input-field" value="Email">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="text" placeholder="Email" id = "emailid">
+
+                        </div>
+
+                        <div class="input-field" id="phoneNumberField">
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="text" placeholder="Phone Number" id="phone_numberid">
+
+                        </div>
+
+                        <div class="password-field" id="passwordField">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="text" placeholder="Password" id="passwordid">
+
+                        </div>
+
+                        <p><a href="">Forgot Password</a></p>
+
+                    </div>
+                </form>
+                <div class="btn-field">
+                    <button type="submit" id="signupBtn">Sign up</button>
+                    <button type="submit" class="disable" id="signinBtn">Sign in</button>
+                </div>
+                <span id="errmsg" style="color:red;position:absolute;margin-top:40px;margin-left:-70px;"></span>
+            </div>
+        </div>
+
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+
+    <script>
+        let signinBtn = document.getElementById("signinBtn");
+        let signupBtn = document.getElementById("signupBtn");
+        let firstNameField = document.getElementById("firstNameField");
+        let lastNameField = document.getElementById("lastNameField");
+        let phoneNumberField = document.getElementById("phoneNumberField");
+        let passwordField = document.getElementById("passwordField");
+        let title = document.getElementById("title");
+        const form = document.getElementById('formElem');
+        const fname = document.getElementById('fname');
+        const lname = document.getElementById('lname');
+        const emailid = document.getElementById('emailid');
+        const phone_numberid = document.getElementById('phone_numberid');
+        const passwordid = document.getElementById('passwordid');
+        
+
+
+
+        signinBtn.onclick = function(){
+            firstNameField.style.maxHeight = "0";
+            lastNameField.style.maxHeight = "0";
+            phoneNumberField.style.maxHeight = "0";
+            passwordField.style.maxHeight = "65px";
+            title.innerHTML = "Sign In";
+            signupBtn.classList.add("disable");
+            signinBtn.classList.remove("disable");
+            email = emailid.value;
+            password = passwordid.value;
+            axios.post('http://13.231.225.7:8000/api/signin/',{email,password}) 
+            .then(response=>{
+            var now = new Date();
+            var time = now.getTime();
+            var expireTime = time + 1000*36000;
+            now.setTime(expireTime);
+            document.cookie = "username="+response.data['username']+";expires="+now.toUTCString();
+            console.log(document.cookie);
+            if(response.status === 200)
+            {
+                window.location.href = "bot2.html";
+            }
+            
+            }
+        )
+        .catch((e)=>{
+            document.getElementById("errmsg").innerHTML = "Invalid email/password";
+            setTimeout(()=>{
+                document.getElementById("errmsg").innerHTML = "";
+            },5000)
+        })
+
+            
+            
+        };
+        signupBtn.onclick = async (e) =>{
+            e.preventDefault();
+            firstNameField.style.maxHeight = "65px";
+            lastNameField.style.maxHeight = "65px";
+            phoneNumberField.style.maxHeight = "65px";
+            passwordField.style.maxHeight = "0px";
+            title.innerHTML = "Sign Up";
+            signupBtn.classList.remove("disable");
+            signinBtn.classList.add("disable");
+            first_name = fname.value;
+            last_name = lname.value;
+            email = emailid.value;
+            phone_number = phone_numberid.value;
+
+            axios.post('http://13.231.225.7:8000/api/signup/',{first_name,last_name,email,phone_number})
+            .then(response=>console.log(response.data))
+            .catch((e)=>{
+                document.getElementById("errmsg").innerHTML = "Invalid email/password";
+                setTimeout(()=>{
+                document.getElementById("errmsg").innerHTML = "";
+                },5000)
+            })
+
+        };
+
+        
+    </script>
+
+    <script type='text/javascript'>   
+        function required()  
+        {
+            var empt = document.forms["form1"]["Email"].value; 
+            if (empt == "")  
+            {  
+                alert("Please input a Value");  
+                return false;  
+            }  
+        }  
+    </script> 
+        
+
+    </body>
+</html>

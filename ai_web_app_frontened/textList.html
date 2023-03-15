@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<head>
+    <link rel = "stylesheet" href="css/textList.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Text List</title>
+    <style>
+        button{
+            padding:5px 7px;
+        }
+    </style>
+</head>
+<body class="container" style="background-color:rgb(34, 35, 35);"><script type="text/javascript" srrc="https://code.responsivevoice.org/responsivevoice.js"></script>
+    <div class="navbar">
+    <nav>
+        <div class="nav-links" id="navLinks">
+            <i class ="fa fa-times" onclick="hideMenu()"></i>
+            <span id="message"></span>
+            <ul>
+                <li><a href="">HOME</a></li>
+                <li><a href="">ABOUT</a></li>
+                <li><a href="">COURSE</a></li>
+                <li><a href="textList.html">TEXTSET</a></li>
+                <li><a href="">CONTACT</a></li>
+                <li><a href="signup.html">SIGNIN</a></li>
+            </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+    </div>
+    <!--<button id="btn1">Add</button>-->
+    <div class="text-box">
+       
+        <table id="text-table" class="text-box1">
+            <tr id="table-header" class="tableHeader">
+                <th style="text-align:center;">Status</th>
+                <th style="text-align:center;">Serial No</th>
+                <th style="text-align:center;">Title</th>
+                <th style="text-align:center;">Try</th>
+                <th style="text-align:center;">Performance</th>
+                <th style="text-align:center;">Level</th>
+            </tr>
+
+            <!--<tr>
+                <td style="color:green;">Y</td>
+                <td style="color:white">1</td>
+                <td style="color:white">Demo1</td>
+                <td>link</td>
+                <td></td>
+                <td style="color:green;">Easy</td>
+            </tr>-->
+        </table>
+ 
+    </div>
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        let p = fetch("http://13.231.225.7:8000/api/text_list/");
+        p.then((value1) =>{
+            return value1.json()
+        }).then((value2) => {
+            const obj = JSON.parse(value2)
+            //console.log(obj.length())
+            for(i in obj){
+                const name = obj[i].name
+                const level = obj[i].level
+                const id = obj[i].id
+                const textn = hexToString(obj[i].hindiText)
+                const hint = obj[i].hintString
+                const hintn = hexToString(hint)
+                addList(name,id,level)
+
+            }
+            
+            //document.querySelector("#final2").innerHTML = textn
+            //document.querySelector("#final3").innerHTML = hintn
+            // document.getElementById("errormsg").innerHTML = "done";
+            
+        })
+        .catch((err) => {
+            console.log(err);
+            //document.getElementById("errormsg").innerHTML = err;
+            //setTimeout(()=>{
+            //    document.getElementById("errormsg").innerHTML = "";
+            //},5000)
+        })
+        function hexToString(hexRepresentation) {
+            let byteArray = new Uint8Array(hexRepresentation.match(/[\da-f]{2}/gi).map(function (h) {
+                return parseInt(h, 16)
+            }))
+            return new TextDecoder().decode(byteArray)
+        }
+        function showMenu(){
+            navLinks.style.right = "0";
+        }
+        function hideMenu(){
+            navLinks.style.right = "-200px";
+        }
+        function addList(name,i,level){
+            var tr = document.createElement('tr');
+
+            var td1 = tr.appendChild(document.createElement('td'));
+            var td2 = tr.appendChild(document.createElement('td'));
+            var td3 = tr.appendChild(document.createElement('td'));
+            var td4 = tr.appendChild(document.createElement('td'));
+            var td5 = tr.appendChild(document.createElement('td'));
+            var td6 = tr.appendChild(document.createElement('td'));
+            td1.innerHTML = "";
+            td2.innerHTML = i;
+            td3.innerHTML = name;
+            td4.innerHTML = '';
+            td5.innerHTML = "";
+            td6.innerHTML = level;
+            td1.style="color:green;padding:7px;text-align:center;";
+            td2.style="color:white;padding:7px;text-align:center;";
+            td3.style="color:white;padding:7px;text-align:center;cursor:pointer;";
+            td4.style="color:red;padding:7px;text-align:center;";
+            td6.style="color:green;padding:7px;text-align:center;";
+            td6.style="color:green;padding:7px;text-align:center;";
+            td3.onclick = () => {
+                this.style = "color:blue;padding:7px;text-align:center;"
+                window.location.href = "bot2.html?id="+td2.innerHTML;
+            }
+
+            document.getElementById("text-table").appendChild(tr);
+        }
+        document.getElementById("btn1").onclick = () => {
+            addList();
+        };
+    </script>
+</body>
