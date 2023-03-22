@@ -19,6 +19,7 @@ from Text import views as tv
 from Auth import views as au
 from django.conf.urls.static import static
 from django.conf import settings
+from Submition import views as sa
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,4 +32,6 @@ urlpatterns = [
     path('api/update_text/',tv.update_text),
     path('api/text/',tv.text),
     path('api/submit/',tv.submit_analysis),
+    path('api/submit_answer/',sa.submit_answer),
+    path('api/submition_list/',sa.submission_list),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

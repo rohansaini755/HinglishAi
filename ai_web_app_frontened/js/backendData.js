@@ -9,9 +9,10 @@ function textsubmit(){
     else{
         q_id = id;
     }
-    axios.post('http://13.231.225.7:8000/api/submit/',{"id":q_id,"text":text})
+    axios.post('http://13.231.225.7:8000/api/submit_answer/',{username:"rohsai",text_id:q_id,"answer":text})
     .then(response=>{
         alert("success");
+        window.location.href = "submitionPage.html?id="+q_id;
         }
     )
     .catch((e)=>{

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Submition</title>
+        <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    </head>
+    <body class="container pt-5 bg-dark">
+        <div class="text_name" >
+            <span id="text_id" style="font-size:8mm;color:white;"></span>
+            <span id="text_name" style="font-size:8mm;color:white;"></span>
+        </div>
+        <div class="cont2" style="display:flex;">
+            <div id="answers" style="display:flex;"> 
+                <div class="p-3" style="margin:20px -5px;border: 1px solid gray;width:600px;height:460px;border-radius: 8px;overflow-y:auto;">
+                <span id="user_answer" class="text-light"></span>
+                </div>
+                <div class="p-3" style="margin:20px;border: 1px solid gray;width:600px;height:460px;border-radius: 8px;overflow-y:auto;">
+                    <span id="admin_answer" class="text-light"></span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="level" style="display:flex">
+                <span id="level_key" style="font-size:8mm;color:white;">Level:-</span>
+                <span id="level_value" style="font-size:5mm;color:white;margin:10px">Easy</span>
+            </div>
+            <div class="accuracy" style="display:flex">
+                <span id="accuracy_key" style="font-size:8mm;color:white;">Accuracy:-</span>
+                <span id="accuracy_value" style="font-size:8mm;color:white;margin:0 10px;">29%</span>
+            </div>
+            <div class="status" style="display:flex">
+                <span id="status_key" style="font-size:8mm;color:white;">Status:-</span>
+                <span id="status_value" style="font-size:8mm;color:white;margin:0 10px;">Good</span>
+            </div>
+            <div class="suggestion" style="display:flex">
+                <span id="suggestion_key" style="font-size:8mm;color:white;">Suggestion:-</span>
+                <span id="suggestion_value" style="font-size:5mm;color:white;margin:10px">Good but you have to improve</span>
+            </div>
+            
+        </div>
+    </body>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="js/submition_data.js"></script>
+</html>
